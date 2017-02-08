@@ -3,6 +3,8 @@ from django.views.generic import View
 # Create your views here.
 
 from .models import Notes
+from .forms import NoteForm
+
 
 class Index(View):
     template_name = 'notes/index.html'
@@ -15,4 +17,12 @@ class Index(View):
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data()
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        form = NoteForm(request.POST)
+        context = self.get_context_data()
+
+        if form.is_valid():
+            form.save()
         return render(request, self.template_name, context)
