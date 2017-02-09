@@ -22,6 +22,7 @@
 {# Display notes #}
 <div class="row">
 {% for note in notes %}
+<a href="{% url 'update' note.id %}">
     <div class="col-md-3">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -33,6 +34,7 @@
             </div>
         </div>
     </div>
+    </a>
 {% endfor %}
 </div>
 </div>
